@@ -119,7 +119,7 @@ export default function Menu() {
             {menu && (
           	<div className="text-center bg-blue-300  w-5/6 rounded-b-lg h-auto absolute left-0 top-full text-xl md:w-2/3 lg:w-1/5 ">
               {role == 'admin' && (
-                <div className={` ${newPost ? " transition duration-500 bg-blue-500 rounded-lg " : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2`}>
+                <div className={` ${newPost ? " transition duration-500 bg-blue-500 rounded-lg " : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2 hover:bg-blue-500`}>
                 <BsPlusSquare className={` ${newPost ? "transition duration-500 origin-center transform rotate-90" : "transition duration-500 "} w-1/6 h-1/6 md:h-14 md:h-14 lg:m-2 ` }/>
                 <button className={` w-1/2 text-semibold h-1/6 lg:m-2 lg:p-2`} onClick={ShowCreatePost}>Crear Post</button>
               </div>)
@@ -127,17 +127,17 @@ export default function Menu() {
           		
               {
                 role == 'admin' && (
-                  <div className={` ${mine ? " transition duration-500 bg-blue-500 rounded-lg" : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2`}>
+                  <div className={` ${mine ? " transition duration-500 bg-blue-500 rounded-lg" : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2 hover:bg-blue-500`}>
                   <BsCardText className={` ${mine ? "transition duration-500 origin-center transform rotate-90" : "transition duration-500 "} w-1/6 h-1/6 md:h-14 md:h-14 lg:m-2` }/>
                 <button className="w-1/2 text-semibold h-1/2 lg:m-2 lg:p-2" onClick={ShowMines}>Mis Posts</button> 
                 </div>
                   )
               }	
-          		<div className={` ${favo ? " transition duration-500 bg-blue-500 rounded-lg" : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2`}>
+          		<div className={` ${favo ? " transition duration-500 bg-blue-500 rounded-lg" : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2 hover:bg-blue-500`}>
           			<IoIosStarOutline className={` ${favo ? "transition duration-500 origin-center transform rotate-90" : "transition duration-500 "} w-1/6 h-1/6 md:h-14 md:h-14 lg:m-2` }/>
           			<button className="w-1/2 text-semibold h-1/2 lg:m-2 lg:p-2" onClick={ShowFavs}>Favoritos</button> 
           		</div>
-          		<div className={` ${logoutbutton ? " transition duration-500 bg-blue-500 rounded-lg" : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2 lg:relative `}>
+          		<div className={` ${logoutbutton ? " transition duration-500 bg-blue-500 rounded-lg" : "transition duration-500"} m-2 p-4 flex flex-row justify-center items-center md:p-2 md:m-1 lg:p-4 lg:m-2 lg:relative hover:bg-blue-500`}>
           			<IoIosLogOut className={` ${logoutbutton ? "transition duration-500 origin-center transform rotate-90 lg:-rotate-90" : "transition duration-500 "} w-1/6 h-1/6 md:h-14 md:h-14 lg:m-2` }/>
           			<button className=" w-1/2 text-semibold h-1/2 lg:m-2 lg:p-2" onClick={ShowLogout}>Cerrar Sesión</button> 
           		</div>

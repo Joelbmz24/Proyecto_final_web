@@ -6,9 +6,9 @@ import AddComment from "../Comment/AddComment";
 import {BsStarFill, BsHeartFill, BsFillChatLeftTextFill} from "react-icons/bs";
 import userImage from "../../../Assets/Img/user.png"
 const PostContainer = ( { pageNumber, username, post}) => {	
-	const { _id , title , description , image , user , likes , comments, } = post;
+	const { _id , title , description , image , user , likes , comments, updated} = post;
 	const getRole = localStorage.getItem("role_name");
-
+	const dateCreated = updated.substring(0,10);
 	const [isLiked, setIsLiked] = useState(likes.some(like => like.username === username));
 	const [isFavorite, setFavorite] = useState(false);
 	const [likeCount, setLikeCount] = useState(likes.length);
@@ -27,11 +27,15 @@ const PostContainer = ( { pageNumber, username, post}) => {
 			})
 		};
 
-		const verifyFavorite = async () => {
-			const favState = localStorage.getItem(`favState${_id}`);
-			if (favState == 1) {
-				setFavorite(true);
-			}		
+		const verifyFavorite = () => {
+			const Favs = JSON.parse(localStorage.getItem("postsFavs"));
+			console.log(Favs);
+			Favs.forEach(it => {
+				if(it._id === _id){
+					setFavorite(true);
+				}
+			})
+				
 		}
 
 		verifyLike();
@@ -116,13 +120,14 @@ const PostContainer = ( { pageNumber, username, post}) => {
         const post = Object.fromEntries(formData.entries());
         const token = localStorage.getItem('token');
     
-        if(post.title.length < 8 || post.title.length >32) return alert("The title must be between 8 and 32 characters");
+        if(post.title.length < 8 || post.title.length >32) return alert("El titulo debe ser mayor de 8 carácteres");
 
-        if(post.description.length < 8) return alert("The description must be at least 8 characters long");
+        if(post.description.length < 8) return alert("La descripción debe ser mayor de 8 carácteres");
 
-        if(!post.image.startsWith('https://')) return alert("The image must be imported through a url");
+        if(!post.image.startsWith('https://')) return alert("La imágen debe ser un link 'https'");
 
 		const res = services.UpdatePost(post.title, post.description, post.image, getPost._id);
+			
 		console.log(res);
 
 		setModify(false);
@@ -133,9 +138,12 @@ const PostContainer = ( { pageNumber, username, post}) => {
 	return(
 		<div className="flex flex-col border w-screen bg-white m-4 h-1/2 rounded h-auto content-center items-center p-4 font-inter lg:w-full md:w-full">
 			<div className="flex flex-row justify-between items-center  p-1 w-full">
-				<div className="flex flex-row w-1/2 p-2 items-center p-1">
+				<div className="flex flex-row w-1/2 p-2 items-center">
 					<img className="w-1/6 h-1/6 rounded-full border-4 border-pink-200 bg-pink-100" src={userImage}/>
+					<div className="flex flex-col ml-2 text-center">
 					<p className=" p-2 font-bold">{user}</p>
+					<p className="text-sm">{dateCreated}</p>
+					</div>
 
 					{
 				getRole == "admin" && user == username &&

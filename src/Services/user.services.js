@@ -82,6 +82,7 @@ services.getOwn = async (filters) => {
       const data = await response.json();
       
       const finalData = data.data.map(getPosts);
+      localStorage.setItem("pagesOwned", data.pages);
       return finalData;
     }
   }catch(error) {

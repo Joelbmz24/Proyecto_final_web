@@ -7,12 +7,7 @@ import {getPosts} from "../../Services/Functions";
 
 export default function Favorites() {
 
-	const [fav, setFav] = useState(false);
   	const [posts, getPost] = useState([]);
-  	const [pageNumber, changeNumber] = useState(0);
-	const pagePost = localStorage.getItem("pages");
-
-
 
 	useEffect(() => {
 			const getFavoritePosts = async () => {
@@ -30,7 +25,7 @@ export default function Favorites() {
 			    	const response = await services.getOne(id);
 
 			    	if (!response) {
-		          		console.log("Este post se encuentra desactivado");
+		          		console.log("Este post se encuentra desactivado!");
 		        	}else{return response;}
 		        	
 		    	} catch(error) {
@@ -44,6 +39,7 @@ export default function Favorites() {
 	        const finalMap = resultsFiltered.map(getPosts);
 
 	        console.log(finalMap);
+	        localStorage.setItem("postsFavs", JSON.stringify(finalMap));
 	        getPost(finalMap);
 	       
 	      } catch(error) {
@@ -52,15 +48,8 @@ export default function Favorites() {
 	    };
 
 	    getFavoritePosts();
-	},[fav] )
+	},[] )
 
-	const onNextButton = () => {
-      pageNumber < pagePost ? changeNumber(pageNumber + 1) : console.log("Valor maximo");  
-  };
-
-  const onPrevButton = () => {
-     pageNumber >= 0 ? changeNumber(pageNumber - 1) : console.log("Valor minimo");  
-  };
 
 	return (
 		<div className="flex gap-4 flex-col w-full justify-center items-center  min-h-screen bg-gray-100">
@@ -68,14 +57,8 @@ export default function Favorites() {
       <div className="w-3/5 md:w-2/3 lg:w-2/3 h-full flex flex-col justify-center items-center lg:min-h-screen">
         <Feed posts={posts} className="w-full"/>
         <div className="flex flex-row">
-        <button onClick={onNextButton}>
-        Siguiente
-        </button>
-        <button onClick={onPrevButton}>
-        Anterior
-        </button>
-        </div>
       </div>
 		</div>
+	</div>
 	);
 }

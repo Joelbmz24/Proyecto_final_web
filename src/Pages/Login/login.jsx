@@ -28,7 +28,6 @@ export default function Login() {
     console.log(roleGoTo);
   };
   if (token && role){
-    console.log("Ya se loggea")
     return <Navigate replace to="/redirect"/>
   }
 
