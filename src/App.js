@@ -1,6 +1,6 @@
 import Login from './Pages/Login/login';
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   Navigate
@@ -17,7 +17,7 @@ import Owned from './Pages/Owned/Owned';
 
 function App() {
   return (
-  <BrowserRouter>
+  <HashRouter>
       <Routes>
         <Route path="/" element={<Navigate replace to={"/login"} />} />
         <Route path="/login" element={<Login />} />
@@ -45,7 +45,7 @@ function App() {
           } />
         <Route path="/*" element={<NotFound/>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
