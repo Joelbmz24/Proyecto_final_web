@@ -30,7 +30,7 @@ const PostContainer = ( { pageNumber, username, post}) => {
 		const verifyFavorite = () => {
 			const Favs = JSON.parse(localStorage.getItem("postsFavs"));
 			console.log(Favs);
-			Favs.forEach(it => {
+			Favs?.forEach(it => {
 				if(it._id === _id){
 					setFavorite(true);
 				}
